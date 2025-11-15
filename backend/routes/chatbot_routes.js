@@ -117,6 +117,12 @@ REACT FLOW EDGE FORMAT (strictly follow this structure):
   "source": "source_node_id",
   "target": "target_node_id",
   "type": "step" OR "straight" OR "smoothstep",
+  "markerEnd": {
+      type: MarkerType.ArrowClosed,
+      width: 20,
+      height: 20,
+      color: '#FF0072',
+    },
   "label": "Descriptive relationship explaining how concepts connect"
 }
 
