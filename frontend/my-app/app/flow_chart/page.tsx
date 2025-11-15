@@ -7,7 +7,7 @@ export default function FlowChart() {
         {
             id: 'n1',
             position: { x: 0, y: 0 },
-            data: { label: 'Node 1' },
+            data: { label: 'Desci 1' },
             type: 'input',
         },
         {
@@ -29,20 +29,21 @@ export default function FlowChart() {
             type: 'step',
             label: 'edge label',
         },{
-            id:'n1-n2',
-            source: 'n1',
-            target: 'n2',
+            id:'n2-n3',
+            source: 'n2',
+            target: 'n3',
             type: 'step',
             label: 'edge label',
         }
     ]
+
     return (
-    <div  style={{ maxHeight: 'calc(100% - 40px)',height: 'calc(100% - 40px)', maxWidth:'calc(100% - 40px)', border: '1px solid black', borderRadius:'5px', margin:'40px' }}>
-        <ReactFlow nodes={initialNodes} edges={initialEdges}>
-            <MiniMap nodeStrokeWidth={2} />
-            <Background />
-            <Controls />
-        </ReactFlow>
-    </div>
+        <div  style={{ maxHeight: 'calc(100% - 40px)',height: 'calc(100% - 40px)', maxWidth:'calc(100% - 40px)', border: '1px solid black', borderRadius:'5px', margin:'40px' }}>
+            <ReactFlow nodes={initialNodes} edges={initialEdges}>
+                <MiniMap nodeStrokeWidth={2} />
+                <Background />
+                <Controls />
+            </ReactFlow>
+        </div>
     );
 }
