@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/dagre": "^0.7.53",
     "@xyflow/react": "^12.9.3",
+    "dagre": "^0.8.5",
     "dotenv": "^17.2.3",
     "next": "16.0.3",
     "openai": "^6.9.0",
