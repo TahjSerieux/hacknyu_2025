@@ -1,0 +1,284 @@
+/* Custom FlowChart Styles - Clean & Playful Learning Theme */
+
+/* Node Base Styles */
+.react-flow__node {
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    transition: all 0.25s ease;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.react-flow__node:hover {
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.15);
+    transform: scale(1.05);
+    border-color: #fca5a5;
+    z-index: 10;
+}
+
+.react-flow__node.selected {
+    border-color: #dc2626;
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.2);
+}
+
+/* Input Node - Primary Red */
+.react-flow__node-input {
+    background: linear-gradient(135deg, #ffffff 0%, #fef2f2 100%);
+    border-color: #dc2626;
+    font-weight: 600;
+    color: #991b1b;
+}
+
+.react-flow__node-input .react-flow__handle {
+    background: #dc2626;
+    border: 2px solid #ffffff;
+}
+
+/* Output Node - Success Green */
+.react-flow__node-output {
+    background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+    border-color: #10b981;
+    font-weight: 600;
+    color: #065f46;
+}
+
+.react-flow__node-output .react-flow__handle {
+    background: #10b981;
+    border: 2px solid #ffffff;
+}
+
+/* Default Node */
+.react-flow__node-default {
+    background: #ffffff;
+    border-color: #d1d5db;
+    color: #374151;
+}
+
+/* Main Topic Node - Large and Prominent */
+.react-flow__node-main-topic {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border: 3px solid #dc2626;
+    border-radius: 12px;
+    padding: 20px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #991b1b;
+    box-shadow: 0 4px 16px rgba(220, 38, 38, 0.15);
+    min-width: 200px;
+}
+
+.react-flow__node-main-topic:hover {
+    box-shadow: 0 8px 24px rgba(220, 38, 38, 0.25);
+    border-color: #b91c1c;
+}
+
+.react-flow__node-main-topic .react-flow__handle {
+    background: #dc2626;
+    border: 3px solid #ffffff;
+    width: 12px;
+    height: 12px;
+}
+
+/* Subtopic Node - Medium Emphasis */
+.react-flow__node-subtopic {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 2.5px solid #f59e0b;
+    border-radius: 10px;
+    padding: 16px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #92400e;
+    box-shadow: 0 3px 12px rgba(245, 158, 11, 0.12);
+    min-width: 160px;
+}
+
+.react-flow__node-subtopic:hover {
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.2);
+    border-color: #d97706;
+}
+
+.react-flow__node-subtopic .react-flow__handle {
+    background: #f59e0b;
+    border: 2px solid #ffffff;
+    width: 10px;
+    height: 10px;
+}
+
+/* Auxiliary Node - Supporting Details */
+.react-flow__node-auxiliary {
+    background: #ffffff;
+    border: 2px solid #d1d5db;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6b7280;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    min-width: 120px;
+}
+
+.react-flow__node-auxiliary:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #9ca3af;
+}
+
+.react-flow__node-auxiliary .react-flow__handle {
+    background: #9ca3af;
+    border: 2px solid #ffffff;
+    width: 8px;
+    height: 8px;
+}
+
+/* Node Handles */
+.react-flow__handle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #dc2626;
+    border: 2px solid #ffffff;
+    transition: all 0.2s ease;
+}
+
+.react-flow__handle:hover {
+    width: 14px;
+    height: 14px;
+    background: #b91c1c;
+}
+yy
+.react-flow__handle-connecting {
+    background: #f59e0b;
+}
+
+/* Edges */
+.react-flow__edge-path {
+    stroke: #dc2626;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+    stroke: #b91c1c;
+    stroke-width: 3;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+    stroke-dasharray: 5;
+    animation: dashdraw 0.5s linear infinite;
+}
+
+@keyframes dashdraw {
+    to {
+        stroke-dashoffset: -10;
+    }
+}
+
+.react-flow__edge-text {
+    font-size: 12px;
+    font-weight: 500;
+    fill: #374151;
+}
+
+.react-flow__edge-textbg {
+    fill: #ffffff;
+    fill-opacity: 0.95;
+}
+
+/* Edge Labels */
+.react-flow__edge-label {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #374151;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Controls */
+.react-flow__controls {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.react-flow__controls-button {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e5e7eb;
+    transition: all 0.2s ease;
+    padding: 8px;
+}
+
+.react-flow__controls-button:hover {
+    background: #fef2f2;
+}
+
+.react-flow__controls-button:last-child {
+    border-bottom: none;
+}
+
+.react-flow__controls-button svg {
+    fill: #6b7280;
+    transition: fill 0.2s ease;
+}
+
+.react-flow__controls-button:hover svg {
+    fill: #dc2626;
+}
+
+/* MiniMap */
+.react-flow__minimap {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.react-flow__minimap-mask {
+    fill: rgba(220, 38, 38, 0.08);
+    stroke: #dc2626;
+    stroke-width: 2;
+}
+
+.react-flow__minimap-node {
+    fill: #d1d5db;
+    stroke: none;
+}
+
+/* Selection Box */
+.react-flow__selection {
+    background: rgba(220, 38, 38, 0.08);
+    border: 2px solid #dc2626;
+}
+
+/* Panel */
+.react-flow__panel {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Attribution - Hide it */
+.react-flow__attribution {
+    display: none;
+}
+
+/* Connection Line */
+.react-flow__connectionline {
+    stroke: #f59e0b;
+    stroke-width: 2;
+}
+
+.react-flow__connection-path {
+    stroke: #f59e0b;
+    stroke-width: 2;
+}
+
+
