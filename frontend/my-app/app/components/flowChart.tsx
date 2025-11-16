@@ -4,6 +4,7 @@ import { ReactFlow, Background, Controls, MiniMap, applyEdgeChanges, applyNodeCh
 import '@xyflow/react/dist/style.css';
 import { useCallback, useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import dagre from 'dagre';
+import { FourSquare } from 'react-loading-indicators';
 
 // Dagre layout configuration
 const dagreGraph = new dagre.graphlib.Graph();
@@ -46,6 +47,7 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
     const [edges, setEdges] =  useState<Edge[]>([])
     const [selectedNode, setSelectedNode] = useState<Node | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     
     const onNodesChange = useCallback((changes:any) => setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
         [],
@@ -56,6 +58,7 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
 
     const generateFlowChart = async (userQuery: string) => {
         try {
+            setIsLoading(true);
             const query = "I am a 7 year old girl Explain like im 5 . Please use simple vocabulary that a child could understand. Do not be verbose. " + userQuery;
 
             const response = await fetch("http://localhost:3004/api/chatbot/query", {
@@ -88,6 +91,8 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
             setEdges(layoutedEdges)
         } catch (error) {
             console.log(error)
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -210,6 +215,28 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
                     }}
                 />
             </ReactFlow>
+
+            {/* Loading Indicator Overlay */}
+            {isLoading && (
+                <div 
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        backdropFilter: 'blur(4px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 1000,
+                        animation: 'fadeIn 0.2s ease'
+                    }}
+                >
+                        <FourSquare color={["#dc2626", "#fafafa", "#fca5a5", "#9ca3af"  ]} size="medium" text="" textColor="" />
+                </div>
+            )}
 
             {/* Dark Backdrop Overlay */}
             {isModalOpen && (
