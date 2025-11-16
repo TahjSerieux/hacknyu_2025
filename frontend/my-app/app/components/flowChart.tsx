@@ -44,6 +44,9 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
 
     const [nodes, setNodes] =  useState<Node[]>([])
     const [edges, setEdges] =  useState<Edge[]>([])
+    const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
     const onNodesChange = useCallback((changes:any) => setNodes((nodesSnapshot) => applyNodeChanges(changes, nodesSnapshot)),
         [],
     );
@@ -142,13 +145,36 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
         }
     ]
 
+    const handleNodeClick = useCallback((event: React.MouseEvent, node: Node) => {
+        setSelectedNode(node);
+        setIsModalOpen(true);
+    }, []);
+
+    const closeModal = useCallback(() => {
+        setIsModalOpen(false);
+        setSelectedNode(null);
+    }, []);
+
     return (
-        <div  style={{ maxHeight: 'calc(100% - 40px)',height: 'calc(100% - 40px)', maxWidth:'calc(100% - 40px)', border: '1px solid black', borderRadius:'5px', margin:'40px' }}>
+        <div style={{ 
+            height: '100%',
+            width: '100%',
+            padding: '2rem',
+            position: 'relative'
+        }}>
+            <div style={{ 
+                height: '100%',
+                width: '100%',
+                border: '1px solid black',
+                borderRadius: '8px',
+                position: 'relative'
+            }}>
              <ReactFlow 
                 nodes={nodes} 
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
+                onNodeClick={handleNodeClick}
                 fitView
                 defaultEdgeOptions={{
                     animated: true,
@@ -184,6 +210,83 @@ const FlowChart = forwardRef(({pre_text}: any, ref) => {
                     }}
                 />
             </ReactFlow>
+
+            {/* Dark Backdrop Overlay */}
+            {isModalOpen && (
+                <div 
+                    className="modal-backdrop"
+                    onClick={closeModal}
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                        backdropFilter: 'blur(4px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 1000,
+                        animation: 'fadeIn 0.2s ease'
+                    }}
+                >
+                    {/* Modal Card */}
+                    <div 
+                        className="node-modal"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            backgroundColor: '#ffffff',
+                            borderRadius: '12px',
+                            padding: '2rem',
+                            maxWidth: '600px',
+                            width: '90%',
+                            maxHeight: '80%',
+                            overflow: 'auto',
+                            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+                            position: 'relative',
+                            animation: 'slideUp 0.3s ease'
+                        }}
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={closeModal}
+                            style={{
+                                position: 'absolute',
+                                top: '1rem',
+                                right: '1rem',
+                                background: 'transparent',
+                                border: 'none',
+                                fontSize: '1.5rem',
+                                cursor: 'pointer',
+                                color: '#6b7280',
+                                padding: '0.5rem',
+                                lineHeight: 1,
+                                transition: 'color 0.2s ease'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.color = '#dc2626'}
+                            onMouseLeave={(e) => e.currentTarget.style.color = '#6b7280'}
+                        >
+                            ×
+                        </button>
+
+                        {/* Node Content */}
+                        {selectedNode && (
+                            <div>
+                                <div style={{
+                                    fontSize: '1.25rem',
+                                    lineHeight: '1.8',
+                                    color: '#1f2937',
+                                    fontWeight: 500
+                                }}>
+                                    {String(selectedNode.data.label)}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
+            </div>
         </div>
     );
 });

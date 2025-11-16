@@ -1,5 +1,53 @@
 /* Custom FlowChart Styles - Clean & Playful Learning Theme */
 
+/* Modal Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+    cursor: pointer;
+}
+
+/* Modal Card */
+.node-modal {
+    cursor: default;
+}
+
+.node-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.node-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.node-modal::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.node-modal::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
 /* Node Base Styles */
 .react-flow__node {
     background: #ffffff;
@@ -11,6 +59,7 @@
     transition: all 0.25s ease;
     font-size: 14px;
     color: #1f2937;
+    cursor: pointer;
 }
 
 .react-flow__node:hover {
